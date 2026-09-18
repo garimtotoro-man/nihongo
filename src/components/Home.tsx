@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { loadContent, type Level } from '@/lib/content';
+import { useEffect, useState } from 'react';
 import { useProgress } from '@/lib/store/useProgress';
 import { dayKey, streak } from '@/lib/streak';
 import { Onboarding } from '@/components/Onboarding';
@@ -21,17 +22,46 @@ const GREETINGS = [
 
 const { packs } = loadContent();
 
+const INTRO_KEY = 'snn.introSeen'; // sessionStorage: 앱을 새로 열면 사라져 인트로가 다시 나온다
+
+function readIntroSeen(): boolean {
+  try {
+    return sessionStorage.getItem(INTRO_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 export function Home() {
   const { progress, ready, update, setLevel, setActivePacks } = useProgress();
+  const [introSeen, setIntroSeen] = useState<boolean | null>(null);
 
-  if (!ready) return <main className="grid min-h-dvh place-items-center text-mute">불러오는 중</main>;
+  useEffect(() => {
+    setIntroSeen(readIntroSeen());
+  }, []);
 
-  if (!progress.onboarded) {
+  const markIntroSeen = () => {
+    try {
+      sessionStorage.setItem(INTRO_KEY, '1');
+    } catch {
+      // 저장이 막혀도 화면은 진행한다
+    }
+    setIntroSeen(true);
+  };
+
+  if (!ready || introSeen === null) return <main className="grid min-h-dvh place-items-center text-mute">불러오는 중</main>;
+
+  if (!progress.onboarded || !introSeen) {
     return (
       <Onboarding
         initialPacks={progress.activePacks}
         initialLevel={progress.level}
-        onDone={({ activePacks, level }) => update((p) => ({ ...p, onboarded: true, activePacks, level }))}
+        returning={progress.onboarded}
+        onDone={({ activePacks, level }) => {
+          update((p) => ({ ...p, onboarded: true, activePacks, level }));
+          markIntroSeen();
+        }}
+        onSkip={markIntroSeen}
       />
     );
   }

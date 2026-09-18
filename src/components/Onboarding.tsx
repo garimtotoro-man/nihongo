@@ -13,10 +13,13 @@ type Props = {
   initialPacks: PackId[];
   initialLevel: Level;
   onDone: (v: { activePacks: PackId[]; level: Level }) => void;
+  /** 이미 온보딩을 마친 사용자면 true. 통계가 있는 홈으로 바로 갈 수 있다 */
+  returning?: boolean;
+  onSkip?: () => void;
 };
 
 /** 첫 방문. 1단계 팩 고르기 → 2단계 레벨 → 피드. */
-export function Onboarding({ initialPacks, initialLevel, onDone }: Props) {
+export function Onboarding({ initialPacks, initialLevel, onDone, returning = false, onSkip }: Props) {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
   const [selected, setSelected] = useState<PackId[]>(initialPacks);
@@ -34,7 +37,16 @@ export function Onboarding({ initialPacks, initialLevel, onDone }: Props) {
     <main className="mx-auto flex min-h-dvh max-w-md flex-col px-6 pb-10 pt-16">
       <p className="text-sm font-medium text-accent">쇼츠말고 니혼고</p>
       <div className="mt-4">
-        <Mascot size={64} say={step === 1 ? '안녕! 맹구예요. 배우고 싶은 장르를 골라 봐요.' : '거의 다 됐어요. 레벨은 나중에 바꿀 수 있어요.'} />
+        <Mascot
+          size={64}
+          say={
+            step === 1
+              ? returning
+                ? '다시 왔네요! 오늘은 어떤 장르로 갈까요?'
+                : '안녕! 맹구예요. 배우고 싶은 장르를 골라 봐요.'
+              : '거의 다 됐어요. 레벨은 나중에 바꿀 수 있어요.'
+          }
+        />
       </div>
 
       {step === 1 && (
@@ -46,12 +58,17 @@ export function Onboarding({ initialPacks, initialLevel, onDone }: Props) {
               <PackChip key={p.id} pack={p} on={selected.includes(p.id)} onToggle={() => toggle(p.id)} />
             ))}
           </div>
-          <div className="mt-auto pt-10">
+          <div className="mt-auto flex gap-3 pt-10">
+            {returning && onSkip && (
+              <button type="button" onClick={onSkip} className="rounded-2xl border border-line bg-paper px-5 py-4 font-semibold active:bg-sand">
+                홈으로
+              </button>
+            )}
             <button
               type="button"
               disabled={selected.length === 0}
               onClick={() => setStep(2)}
-              className="w-full rounded-2xl bg-ink py-4 text-lg font-semibold text-paper disabled:opacity-30 active:scale-[0.99]"
+              className="flex-1 rounded-2xl bg-ink py-4 text-lg font-semibold text-paper disabled:opacity-30 active:scale-[0.99]"
             >
               다음
             </button>
