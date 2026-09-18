@@ -21,6 +21,7 @@ export interface KanaChar {
   row: string; // 'na'
   order: number; // 오십음도 순번 (0-based). 탁음은 청음과 같은 순번
   romaji: string; // 'nu'
+  ko: string; // 한글 발음 '누'. 화면의 "다음" 안내는 글자 대신 이것을 보인다
   audio: string; // 'nu.mp3'
   pairId: string; // 'kata_nu'
   confusable: string[]; // ['hira_me', 'hira_wa', 'hira_ne']

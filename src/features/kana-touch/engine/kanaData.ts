@@ -49,6 +49,31 @@ const CONFUSABLE_GROUPS: string[][] = [
   ['ウ', 'ラ'],
 ];
 
+// 한글 발음. romaji → 한글. 화면 안내용이라 통용 표기를 따른다.
+const KO: Record<string, string> = {
+  a: '아', i: '이', u: '우', e: '에', o: '오',
+  ka: '카', ki: '키', ku: '쿠', ke: '케', ko: '코',
+  sa: '사', shi: '시', su: '스', se: '세', so: '소',
+  ta: '타', chi: '치', tsu: '츠', te: '테', to: '토',
+  na: '나', ni: '니', nu: '누', ne: '네', no: '노',
+  ha: '하', hi: '히', fu: '후', he: '헤', ho: '호',
+  ma: '마', mi: '미', mu: '무', me: '메', mo: '모',
+  ya: '야', yu: '유', yo: '요',
+  ra: '라', ri: '리', ru: '루', re: '레', ro: '로',
+  wa: '와', wo: '오', n: '응',
+  ga: '가', gi: '기', gu: '구', ge: '게', go: '고',
+  za: '자', ji: '지', zu: '즈', ze: '제', zo: '조',
+  da: '다', di: '지', du: '즈', de: '데', do: '도',
+  ba: '바', bi: '비', bu: '부', be: '베', bo: '보',
+  pa: '파', pi: '피', pu: '푸', pe: '페', po: '포',
+};
+
+function koOf(romaji: string): string {
+  const k = KO[romaji];
+  if (!k) throw new Error(`한글 발음 없음: ${romaji}`);
+  return k;
+}
+
 function idOf(type: KanaType, romaji: string): string {
   return `${type === 'hiragana' ? 'hira' : 'kata'}_${romaji}`;
 }
@@ -70,6 +95,7 @@ function build(): KanaChar[] {
           row: r.row,
           order,
           romaji: ro,
+          ko: koOf(ro),
           audio: `${ro}.mp3`,
           pairId: idOf(type === 'hiragana' ? 'katakana' : 'hiragana', ro),
           confusable: [],
@@ -94,6 +120,7 @@ function build(): KanaChar[] {
           row: v.of,
           order: seionOrder.get(`${v.of}:${i}`)!,
           romaji: ro,
+          ko: koOf(ro),
           audio: `${ro}.mp3`,
           pairId: idOf(type === 'hiragana' ? 'katakana' : 'hiragana', ro),
           confusable: [],

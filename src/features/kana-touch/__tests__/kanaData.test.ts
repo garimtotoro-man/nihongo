@@ -53,6 +53,16 @@ describe('kanaData', () => {
     expect(kanaById('hira_ga').order).toBe(kanaById('hira_ka').order);
   });
 
+  it('모든 문자에 한글 발음이 있고 화면 안내는 글자를 드러내지 않는다', () => {
+    for (const c of KANA) {
+      expect(c.ko.length).toBeGreaterThan(0);
+      expect(c.ko).not.toBe(c.char);
+    }
+    expect(kanaById('hira_u').ko).toBe('우');
+    expect(kanaById('kata_u').ko).toBe('우');
+    expect(kanaById('hira_ga').ko).toBe('가');
+  });
+
   it('행 상수', () => {
     expect(FULL_ROWS).toEqual(['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ra']);
     for (const row of DAKUON_ROWS) {

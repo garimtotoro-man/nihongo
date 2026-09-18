@@ -133,11 +133,20 @@ export function KanaTouchGame({ storage }: { storage?: StorageAdapter }) {
           </div>
         </div>
         <footer className="mt-6 h-12 text-center">
-          {showNext && target && (
-            <p className="text-mute">
-              다음: <span lang="ja" className="text-2xl font-bold text-ink">{kanaById(target).char}</span>
-            </p>
-          )}
+          {showNext && target && (() => {
+            const k = kanaById(target);
+            const kindLabel =
+              mode === 'dakuon' ? (k.kind === 'seion' ? '청음' : '탁음')
+              : mode === 'pair' || mode === 'mixed' ? (k.kanaType === 'hiragana' ? '히라가나' : '가타카나')
+              : null;
+            return (
+              <p className="text-mute">
+                다음: <span className="text-2xl font-bold text-ink">{k.ko}</span>
+                <span className="ml-1 text-sm">({k.romaji})</span>
+                {kindLabel && <span className="ml-2 text-sm">· {kindLabel}</span>}
+              </p>
+            );
+          })()}
         </footer>
       </main>
     );
