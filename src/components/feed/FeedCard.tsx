@@ -24,9 +24,9 @@ function RailButton({ on, icon, label, onClick }: { on: boolean; icon: string; l
       type="button"
       onClick={onClick}
       data-on={on || undefined}
-      className="flex flex-col items-center gap-1 text-paper active:scale-95 data-on:text-accent"
+      className="flex flex-col items-center gap-1 text-ink active:scale-95 data-on:text-accent"
     >
-      <span className="grid size-12 place-items-center rounded-full bg-white/10 text-2xl data-on:bg-accent/25">{icon}</span>
+      <span className="grid size-12 place-items-center rounded-full bg-ink/5 text-2xl data-on:bg-accent/15">{icon}</span>
       <span className="text-[11px]">{label}</span>
     </button>
   );

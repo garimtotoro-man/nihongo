@@ -1,17 +1,19 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-ink: #14141c;
-  --color-paper: #fbf8f2;
+  --color-paper: #ffffff;
+  --color-sand: #f6f5f1;
+  --color-ink: #1b1b22;
+  --color-mute: #7c7c88;
+  --color-line: #e7e5df;
   --color-accent: #e5484d;
-  --color-mute: #8a8a96;
 }
 
 html,
 body {
   height: 100%;
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-sand);
+  color: var(--color-ink);
   overscroll-behavior-y: none;
   -webkit-tap-highlight-color: transparent;
 }

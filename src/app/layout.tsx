@@ -4,11 +4,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: '쇼츠말고 니혼고',
   description: '스와이프하며 익히는 일본어 한 장',
-  appleWebApp: { capable: true, statusBarStyle: 'black-translucent', title: '니혼고' },
+  appleWebApp: { capable: true, statusBarStyle: 'default', title: '니혼고' },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#14141c',
+  themeColor: '#f6f5f1',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,

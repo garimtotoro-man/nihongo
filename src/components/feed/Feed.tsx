@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { loadContent } from '@/lib/content';
 import { buildSession, SESSION_SIZE } from '@/lib/feed';
 import { useProgress } from '@/lib/store/useProgress';
@@ -67,8 +68,13 @@ export function Feed() {
 
   return (
     <div className="relative mx-auto h-dvh max-w-md">
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-10 px-6 pt-4">
-        <ProgressBar current={bodyDone} total={bodyCount} />
+      <header className="absolute inset-x-0 top-0 z-10 flex items-center gap-3 bg-sand/90 px-4 pt-3 pb-2 backdrop-blur">
+        <Link href="/" aria-label="홈으로" className="grid size-9 shrink-0 place-items-center rounded-full bg-ink/5 text-ink active:scale-95">
+          ←
+        </Link>
+        <div className="flex-1">
+          <ProgressBar current={bodyDone} total={bodyCount} />
+        </div>
       </header>
 
       <div ref={scrollerRef} className="h-full snap-y snap-mandatory overflow-y-auto [scrollbar-width:none]">
@@ -96,6 +102,9 @@ export function Feed() {
             <p className="text-5xl">🎉</p>
             <p className="text-2xl font-bold">오늘 {bodyCount}장 완료</p>
             <p className="text-mute">저장한 카드 {progress.saved.length}장</p>
+            <Link href="/" className="text-sm text-mute underline-offset-4 hover:underline">
+              홈으로
+            </Link>
             <button
               type="button"
               onClick={nextSession}

@@ -24,7 +24,7 @@ export function TtsButton({ text, rate = 0.9, voiceURI }: Props) {
   if (status === 'none') {
     return (
       <span className="flex flex-col items-center gap-1 text-mute" aria-live="polite">
-        <span className="grid size-12 place-items-center rounded-full bg-white/10 text-2xl opacity-50">🔊</span>
+        <span className="grid size-12 place-items-center rounded-full bg-ink/5 text-2xl opacity-50">🔊</span>
         <span className="text-[11px]">음성 없음</span>
       </span>
     );
@@ -34,10 +34,10 @@ export function TtsButton({ text, rate = 0.9, voiceURI }: Props) {
     <button
       type="button"
       onClick={() => speak(text, voice, rate)}
-      className="flex flex-col items-center gap-1 text-paper active:scale-95"
+      className="flex flex-col items-center gap-1 text-ink active:scale-95"
       aria-label="발음 듣기"
     >
-      <span className="grid size-12 place-items-center rounded-full bg-white/10 text-2xl">🔊</span>
+      <span className="grid size-12 place-items-center rounded-full bg-ink/5 text-2xl">🔊</span>
       <span className="text-[11px]">발음</span>
     </button>
   );

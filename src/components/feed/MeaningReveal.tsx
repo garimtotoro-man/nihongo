@@ -13,7 +13,7 @@ export function MeaningReveal({ ko, exampleJp, exampleKo, onReveal }: Props) {
       <button
         type="button"
         onClick={() => { setOpen(true); onReveal?.(); }}
-        className="mt-8 w-full rounded-2xl border border-dashed border-white/30 px-6 py-5 text-base text-mute active:bg-white/5"
+        className="mt-8 w-full rounded-2xl border border-dashed border-ink/20 px-6 py-5 text-base text-mute active:bg-ink/5"
       >
         탭해서 뜻 보기
       </button>
@@ -21,7 +21,7 @@ export function MeaningReveal({ ko, exampleJp, exampleKo, onReveal }: Props) {
   }
 
   return (
-    <div className="mt-8 w-full rounded-2xl bg-white/8 px-6 py-5 text-left">
+    <div className="mt-8 w-full rounded-2xl bg-sand px-6 py-5 text-left">
       <p className="text-2xl font-semibold">{ko}</p>
       {exampleJp && (
         <div className="mt-4 space-y-1 text-base leading-relaxed">

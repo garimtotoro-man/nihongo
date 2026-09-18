@@ -61,7 +61,8 @@ kokoro-nihongo/
 └─ src/
    ├─ app/
    │  ├─ layout.tsx
-   │  ├─ page.tsx             ← 홈(피드)
+   │  ├─ page.tsx             ← 홈(첫 방문엔 온보딩 → 이후 오늘 통계·시작 버튼·장르 칩·레벨)
+   │  ├─ feed/page.tsx        ← 피드
    │  ├─ saved/page.tsx       ← 저장함
    │  ├─ review/page.tsx      ← 복습(2차)
    │  ├─ stats/page.tsx       ← 통계(3차)
@@ -69,7 +70,9 @@ kokoro-nihongo/
    ├─ components/
    │  ├─ feed/  Feed, FeedCard, WordCard, PhraseCard, TipCard, QuizCard, MeaningReveal
    │  ├─ packs/ PackChip, PackSheet
-   │  ├─ Onboarding.tsx
+   │  ├─ Home.tsx             ← 홈 화면(온보딩 여부로 분기)
+   │  ├─ Onboarding.tsx       ← 1단계 장르 칩 → 2단계 레벨 세그먼트
+   │  ├─ Segment.tsx          ← 두세 값 중 하나 고르기
    │  ├─ TtsButton.tsx
    │  └─ ProgressBar.tsx
    ├─ lib/
@@ -177,6 +180,8 @@ interface ProgressStore {
 | 통계(3차) | 주간 학습량, 스트릭, 뜻 열어본 비율, 팩별 저장률. |
 | 설정 | 레벨·팩·일일 목표·음성·속도. 3차에 계정. |
 
+색은 흰 톤이다. 배경 `#f6f5f1`, 카드 흰색, 글자 `#1b1b22`, 강조 코랄 `#e5484d` 하나만 쓴다. 어두운 배경은 쓰지 않는다.
+
 컨트롤 규칙은 tascoFlow 와 같게 유지한다. 두세 값 중 고르는 건 세그먼트, 여러 개 켜고 끄는 건 칩, 실행은 동사 버튼. 라벨이 상태에 따라 바뀌는 단일 버튼은 만들지 않는다.
 
 발음(`lib/tts.ts`): `lang`이 `ja`로 시작하는 음성 중 Google 日本語 · Microsoft Nanami · Kyoko 순으로 고른다. iOS 는 음성 목록이 늦게 오므로 `voiceschanged` 이벤트 뒤 다시 고른다. 재생은 반드시 사용자 탭에서 시작한다(자동 재생은 iOS 에서 막힌다). 일본어 음성이 없는 기기는 버튼에 "음성 없음"을 표시한다.
@@ -235,9 +240,9 @@ create table daily_stats (
 
 | 단계 | 끝나면 이렇게 된다 | 핵심 파일 |
 |---|---|---|
-| **0. 뼈대** | `npm run dev`로 피드 5장이 폰에서 스와이프된다. 뜻 가림·탭 열기·발음·저장 동작. | `lib/feed.ts`, `components/feed/*`, `store/local.ts` |
+| **0. 뼈대** | `npm run dev`로 피드 5장이 폰에서 스와이프된다. 뜻 가림·탭 열기·발음·저장 동작. 첫 방문 온보딩(장르·레벨)과 홈 화면은 2단계에서 앞당겨 여기서 만들었다. | `lib/feed.ts`, `components/feed/*`, `store/local.ts`, `Home.tsx`, `Onboarding.tsx` |
 | **1. 공개** | 카드 40장(여행 15·쇼핑 10·연애 8·시험 7 + 팁 6). 개인 Vercel 에 올라가 링크로 공유됨. PWA 홈 화면 추가 가능. | `content/cards/*.json`, `public/manifest.webmanifest` |
-| **2. 테마팩** | 온보딩에서 팩·레벨을 고르고, 여행 팩을 고르면 여행 카드가 70% 정도 나온다. 팩 시트로 전환. | `Onboarding.tsx`, `PackSheet.tsx`, `feed.test.ts` |
+| **2. 테마팩** | 피드 안에서 팩 시트로 장르를 바꾼다(온보딩·홈의 장르 칩은 0단계에서 완료). | `PackSheet.tsx`, `feed.test.ts` |
 | **3. 재미** | 스트릭·오늘 목표 카드, 저장함 → 플래시카드, 피드 안 퀴즈 카드. | `streak.ts`, `review/page.tsx`, `QuizCard.tsx` |
 | **4. 콘텐츠 100+** | 팩별 20장 이상. `content-stats` 로 비율 확인. 주변 3명 피드백 반영. | `content/` |
 | **5. 계정(필요할 때)** | Google 로그인, 기기 간 동기화, 통계 화면. Supabase Free 프로젝트 생성. | `store/supabase.ts`, `supabase/migrations/` |
