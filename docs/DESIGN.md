@@ -227,7 +227,7 @@ create table daily_stats (
 ## 10. 배포·환경변수
 
 - `main` 푸시 = 운영 배포. 작업은 브랜치에서 하고 PR 없이 바로 merge 해도 된다(혼자 개발).
-- Vercel 프로젝트는 개인 계정에서 GitHub 저장소를 import 해 만든다. 프레임워크 자동 감지, 설정 없음.
+- Vercel 프로젝트는 개인 계정(TOTORO · Hobby)에서 GitHub 저장소를 import 해 만들었다. 프레임워크 자동 감지, 설정 없음. 운영 주소 https://nihongo-nine-zeta.vercel.app (2026-09-18 첫 배포).
 - 환경변수는 3차 전까지 없다. 3차: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` 두 개만. `.env.example`에 이름만 두고 값은 Vercel 대시보드와 로컬 `.env.local`에만 넣는다.
 - 문구 규칙: 한국어 문장에 em-dash 금지, 훈계·설명 과다 금지(tascoFlow 매뉴얼 규칙과 동일).
 
