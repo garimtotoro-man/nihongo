@@ -1,0 +1,12 @@
+[
+  {
+    "id": "suki", "type": "word", "level": "N5", "packs": ["love", "daily"], "category": "감정",
+    "jp": "好き", "kana": "すき", "romaji": "suki", "ko": "좋아함, 좋아해",
+    "example_jp": "君のこと、好きだよ。", "example_ko": "너를 좋아해."
+  },
+  {
+    "id": "aitai", "type": "phrase", "level": "N4", "packs": ["love"], "category": "감정",
+    "jp": "会いたい", "kana": "あいたい", "romaji": "aitai", "ko": "보고 싶어",
+    "example_jp": "早く会いたいな。", "example_ko": "빨리 보고 싶다."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "fukuro", "type": "word", "level": "N5", "packs": ["shopping"], "category": "계산",
+    "jp": "袋", "kana": "ふくろ", "romaji": "fukuro", "ko": "봉투",
+    "example_jp": "袋はいりません。", "example_ko": "봉투는 필요 없어요."
+  },
+  {
+    "id": "shichaku-shite-mo-ii-desu-ka", "type": "phrase", "level": "N4", "packs": ["shopping"], "category": "옷",
+    "jp": "試着してもいいですか", "kana": "しちゃくしてもいいですか", "romaji": "shichaku shite mo ii desu ka", "ko": "입어 봐도 돼요?",
+    "example_jp": "この服、試着してもいいですか？", "example_ko": "이 옷, 입어 봐도 돼요?"
+  },
+  {
+    "id": "betsubetsu-de", "type": "phrase", "level": "N4", "packs": ["shopping"], "category": "계산",
+    "jp": "別々で", "kana": "べつべつで", "romaji": "betsubetsu de", "ko": "따로따로 (계산해 주세요)",
+    "example_jp": "お会計は別々でお願いします。", "example_ko": "계산은 따로따로 해 주세요."
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "tip-ka-makes-question", "type": "tip", "level": "N5", "packs": [], "category": "팁",
+    "jp": "「〜か」하나면 질문",
+    "note": "문장 끝에 か를 붙이면 질문이 된다. 「これは何ですか」처럼 물음표도 억양도 따로 필요 없다."
+  },
+  {
+    "id": "tip-sumimasen-vs-gomennasai", "type": "tip", "level": "N5", "packs": [], "category": "팁",
+    "jp": "すみません と ごめんなさい",
+    "note": "가게에서 부를 땐 すみません, 진짜 미안할 땐 ごめんなさい. 여행에선 すみません 하나로 거의 다 된다."
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ikura-desu-ka", "type": "phrase", "level": "N5", "packs": ["travel", "shopping"], "category": "주문",
+    "jp": "いくらですか", "kana": "いくらですか", "romaji": "ikura desu ka", "ko": "얼마예요?",
+    "example_jp": "これ、いくらですか？", "example_ko": "이거 얼마예요?"
+  },
+  {
+    "id": "sumimasen", "type": "word", "level": "N5", "packs": ["travel", "daily"], "category": "기본",
+    "jp": "すみません", "kana": "すみません", "romaji": "sumimasen", "ko": "실례합니다 / 죄송합니다",
+    "example_jp": "すみません、駅はどこですか？", "example_ko": "실례합니다, 역이 어디예요?",
+    "note": "사람을 부를 때도, 사과할 때도 쓴다."
+  },
+  {
+    "id": "eki", "type": "word", "level": "N5", "packs": ["travel"], "category": "길찾기",
+    "jp": "駅", "kana": "えき", "romaji": "eki", "ko": "역",
+    "example_jp": "駅まで歩けますか？", "example_ko": "역까지 걸어갈 수 있어요?"
+  },
+  {
+    "id": "kore-o-kudasai", "type": "phrase", "level": "N5", "packs": ["travel", "shopping"], "category": "주문",
+    "jp": "これをください", "kana": "これをください", "romaji": "kore o kudasai", "ko": "이거 주세요",
+    "example_jp": "すみません、これをください。", "example_ko": "저기요, 이거 주세요."
+  },
+  {
+    "id": "toire-wa-doko-desu-ka", "type": "phrase", "level": "N5", "packs": ["travel"], "category": "길찾기",
+    "jp": "トイレはどこですか", "kana": "トイレはどこですか", "romaji": "toire wa doko desu ka", "ko": "화장실이 어디예요?",
+    "example_jp": "あの、トイレはどこですか？", "example_ko": "저, 화장실이 어디예요?"
+  },
+  {
+    "id": "michi-ni-mayoimashita", "type": "phrase", "level": "N4", "packs": ["travel"], "category": "긴급",
+    "jp": "道に迷いました", "kana": "みちにまよいました", "romaji": "michi ni mayoimashita", "ko": "길을 잃었어요",
+    "example_jp": "すみません、道に迷いました。", "example_ko": "죄송해요, 길을 잃었어요."
+  },
+  {
+    "id": "kippu", "type": "word", "level": "N5", "packs": ["travel"], "category": "교통",
+    "jp": "切符", "kana": "きっぷ", "romaji": "kippu", "ko": "표 (승차권)",
+    "example_jp": "切符はどこで買えますか？", "example_ko": "표는 어디서 살 수 있어요?"
+  }
+]

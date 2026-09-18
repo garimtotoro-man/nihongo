@@ -1,0 +1,12 @@
+[
+  {
+    "id": "shiken", "type": "word", "level": "N5", "packs": ["exam"], "category": "학교",
+    "jp": "試験", "kana": "しけん", "romaji": "shiken", "ko": "시험",
+    "example_jp": "明日、日本語の試験があります。", "example_ko": "내일 일본어 시험이 있어요."
+  },
+  {
+    "id": "ganbatte", "type": "phrase", "level": "N5", "packs": ["exam", "daily"], "category": "응원",
+    "jp": "頑張って", "kana": "がんばって", "romaji": "ganbatte", "ko": "힘내, 파이팅",
+    "example_jp": "試験、頑張って！", "example_ko": "시험 힘내!"
+  }
+]

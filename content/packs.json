@@ -1,0 +1,10 @@
+[
+  { "id": "travel",   "emoji": "🧳", "name": "여행",   "desc": "길찾기·주문·긴급",     "free": true,  "order": 1 },
+  { "id": "shopping", "emoji": "🛍️", "name": "쇼핑",   "desc": "계산·옷·면세",         "free": true,  "order": 2 },
+  { "id": "love",     "emoji": "💌", "name": "연애",   "desc": "감정·데이트·메시지",   "free": true,  "order": 3 },
+  { "id": "exam",     "emoji": "📝", "name": "시험",   "desc": "N5·N4 필수 어휘",      "free": true,  "order": 4 },
+  { "id": "food",     "emoji": "🍜", "name": "음식",   "desc": "메뉴·맛·식당",         "free": false, "order": 5 },
+  { "id": "business", "emoji": "💼", "name": "비즈니스", "desc": "인사·메일·회의",      "free": false, "order": 6 },
+  { "id": "anime",    "emoji": "🎌", "name": "애니",   "desc": "자주 나오는 대사",     "free": false, "order": 7 },
+  { "id": "daily",    "emoji": "☀️", "name": "일상",   "desc": "인사·날씨·하루",       "free": true,  "order": 8 }
+]

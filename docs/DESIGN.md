@@ -81,7 +81,7 @@ kokoro-nihongo/
    │     ├─ types.ts          ← Progress 타입 + ProgressStore 인터페이스
    │     ├─ local.ts          ← localStorage 구현(1~2차)
    │     └─ supabase.ts       ← Supabase 구현(3차)
-   └─ test/                   ← content.test.ts, feed.test.ts, streak.test.ts
+   └─ test/                   ← content.test.ts, feed.test.ts, store.test.ts(저장소·스트릭)
 ```
 
 ## 4. 데이터 모델
@@ -100,9 +100,9 @@ type Card = {
   packs: PackId[];       // 복수 가능. tip 은 빈 배열 허용
   category: string;      // 화면 뱃지. 예: "주문"
   jp: string;            // 표시용 일본어
-  kana: string;          // 읽기
-  romaji: string;
-  ko: string;            // 뜻(가려지는 부분)
+  kana?: string;         // 읽기. word·phrase 필수, tip 생략 가능
+  romaji?: string;       // word·phrase 필수
+  ko?: string;           // 뜻(가려지는 부분). word·phrase 필수
   example_jp?: string;
   example_ko?: string;
   note?: string;         // tip 카드 본문 / 단어 카드의 한 줄 보충
