@@ -3,7 +3,7 @@
 개인 프로젝트. 회사 프로젝트 tascoFlow(`C:\Users\garim\my-project`)와 **무관**하며 어떤 자원도 공유하지 않는다.
 
 ## 분리 규칙 (가장 중요)
-- GitHub `garimtotoro-man/kokoro-nihongo`, 커밋 이메일 garimtotoro@gmail.com. `tascorp`가 들어간 이메일로 커밋하지 않는다(`.githooks/pre-commit`이 막는다).
+- GitHub `garimtotoro-man/nihongo`, 커밋 이메일 garimtotoro@gmail.com. `tascorp`가 들어간 이메일로 커밋하지 않는다(`.githooks/pre-commit`이 막는다).
 - Vercel 은 개인 계정 Hobby 스코프. Supabase 는 garimtotoro@gmail.com 의 별도 org. 회사 Supabase 키·URL·토큰을 이 저장소에 쓰지 않는다.
 - `my-project`의 파일·환경변수·메모리를 참조하거나 복사하지 않는다.
 - 밖으로 나가는 동작(푸시·배포·외부 서비스 생성)은 실행 전 확인을 받는다.

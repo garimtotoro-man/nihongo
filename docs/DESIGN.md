@@ -14,7 +14,7 @@
 | 자원 | tascoFlow(회사) | 쇼츠말고 니혼고(개인) |
 |---|---|---|
 | 로컬 폴더 | `C:\Users\garim\my-project` | `C:\Users\garim\kokoro-nihongo` |
-| GitHub | `tascorpCSC/tascoFlow` · sks@tascorp.co.kr | `garimtotoro-man/kokoro-nihongo` · garimtotoro@gmail.com |
+| GitHub | `tascorpCSC/tascoFlow` · sks@tascorp.co.kr | `garimtotoro-man/nihongo` · garimtotoro@gmail.com |
 | Vercel | 회사 팀 | 개인 계정(GitHub garimtotoro-man 으로 로그인) · Hobby 플랜 |
 | Supabase | 회사 org | garimtotoro@gmail.com 로 새 org · Free 플랜 (3차에서 생성) |
 | 환경변수 | `my-project/.env.local` | `kokoro-nihongo/.env.local` (서로 복사 금지) |
