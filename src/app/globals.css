@@ -1,26 +1,83 @@
 @import 'tailwindcss';
 
+/* 레트로 도트(16비트) 테마. 밝은 톤은 유지하고 모양만 픽셀 게임 UI 로. */
 @theme {
+  --font-sans: var(--font-galmuri), 'Galmuri11', ui-monospace, monospace;
+
   --color-paper: #ffffff;
-  --color-sand: #f6f5f1;
+  --color-sand: #e9eef0; /* 옅은 청회색 바닥 */
   --color-ink: #1b1b22;
-  --color-mute: #7c7c88;
-  --color-line: #e7e5df;
+  --color-mute: #626a74;
+  --color-line: #1b1b22;
   --color-accent: #e5484d;
+
+  /* 모서리는 전부 각지게 */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --radius-full: 0px;
+
+  /* 그림자는 오른쪽 아래 단색 */
+  --shadow-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-md: 4px 4px 0 0 var(--color-ink);
 }
 
 html,
 body {
   height: 100%;
-  background: var(--color-sand);
   color: var(--color-ink);
+  background-color: var(--color-sand);
+  /* 게임 바닥 같은 24px 타일 격자 */
+  background-image:
+    linear-gradient(rgba(27, 27, 34, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 27, 34, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
   overscroll-behavior-y: none;
   -webkit-tap-highlight-color: transparent;
+  /* 픽셀 글꼴은 안티앨리어싱을 끄면 더 또렷하다 */
+  -webkit-font-smoothing: none;
+  font-smooth: never;
 }
 
-/* あいうえお 터치 타일 연출. 오답은 약하게(작은 흔들림만), 정답은 150ms 소멸, 힌트는 800ms 발광. */
+/* 테두리 1px → 2px. 유틸리티 레이어 밖에 있어 항상 이긴다. */
+.border {
+  border-width: 2px;
+}
+.border-b {
+  border-bottom-width: 2px;
+}
+.border-l {
+  border-left-width: 2px;
+}
+.divide-y > :not(:last-child) {
+  border-bottom-width: 2px;
+}
+
+/* 그림자 있는 버튼은 누르면 그림자 자리로 눌린다 */
+button.shadow-sm:active:not(:disabled),
+a.shadow-sm:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* 픽셀 이미지는 보간 없이 */
+img[alt='맹구'] {
+  image-rendering: pixelated;
+}
+
+/* 진도 바: 칸이 나뉜 블록 게이지 */
+.px-gauge {
+  background-image: repeating-linear-gradient(90deg, var(--color-accent) 0 6px, transparent 6px 8px);
+}
+
+/* あいうえお 터치 타일 연출. 오답은 약하게(작은 흔들림만), 정답은 150ms 소멸, 힌트는 800ms 발광. 계단식(steps) 으로 도트 느낌. */
 .kt-tile {
-  transition: transform 150ms ease, opacity 150ms ease;
+  transition: transform 150ms steps(3), opacity 150ms steps(3);
 }
 .kt-removed {
   transform: scale(0);
@@ -33,17 +90,17 @@ body {
   75% { transform: translateX(6px); }
 }
 .kt-shake {
-  animation: kt-shake 200ms ease;
+  animation: kt-shake 200ms steps(2);
 }
 @keyframes kt-glow {
-  from { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0); }
-  to { box-shadow: 0 0 0 4px rgba(229, 72, 77, 0.35), 0 0 24px rgba(229, 72, 77, 0.45); }
+  from { box-shadow: 3px 3px 0 0 var(--color-ink), 0 0 0 0 transparent; }
+  to { box-shadow: 3px 3px 0 0 var(--color-ink), 0 0 0 4px var(--color-accent); }
 }
 .kt-hint {
-  animation: kt-glow 800ms ease forwards;
+  animation: kt-glow 800ms steps(4) forwards;
 }
 @media (prefers-reduced-motion: reduce) {
   .kt-tile { transition: none; }
   .kt-shake { animation: none; }
-  .kt-hint { animation: none; box-shadow: 0 0 0 4px rgba(229, 72, 77, 0.35); }
+  .kt-hint { animation: none; box-shadow: 3px 3px 0 0 var(--color-ink), 0 0 0 4px var(--color-accent); }
 }
