@@ -1,0 +1,18 @@
+#!/bin/sh
+# 개인 프로젝트 커밋 신원 보호: 회사 이메일로 커밋하면 막는다.
+email="$(git config user.email)"
+case "$email" in
+  *tascorp*|"")
+    echo "pre-commit: 커밋 이메일이 '$email' 입니다. 이 저장소는 garimtotoro@gmail.com 로만 커밋합니다." >&2
+    echo "  git config user.email garimtotoro@gmail.com" >&2
+    exit 1
+    ;;
+esac
+# 코드·환경 파일에 회사 자원(이메일·저장소·키)이 섞여 들어오는지 검사. docs/·CLAUDE.md 는 분리 설명을 위해 언급을 허용한다.
+if git diff --cached -U0 -- src content public scripts supabase '.env*' 'vercel.*' 'next.config.*' \
+   | grep -qiE 'tascorp|tascoflow'; then
+  echo "pre-commit: 코드나 환경 파일에 'tascorp' 또는 'tascoflow' 문자열이 있습니다. 회사 자원이 섞였는지 확인하세요." >&2
+  echo "  의도한 것이면 git commit --no-verify 로 건너뛸 수 있습니다." >&2
+  exit 1
+fi
+exit 0

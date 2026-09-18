@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# vercel
+.vercel
+
+# env (값은 절대 커밋하지 않는다. 이름만 .env.example 에)
+.env
+.env.*
+!.env.example
+
+# supabase (3차) 로컬 상태
+supabase/.temp/
+supabase/.branches/
+
+# test / coverage
+coverage/
+
+# misc
+.DS_Store
+*.pem
+*.log
+*.tsbuildinfo
