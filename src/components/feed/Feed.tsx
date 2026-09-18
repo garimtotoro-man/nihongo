@@ -7,6 +7,7 @@ import { buildSession, SESSION_SIZE } from '@/lib/feed';
 import { useProgress } from '@/lib/store/useProgress';
 import { ProgressBar } from '@/components/ProgressBar';
 import { FeedCard } from './FeedCard';
+import { Mascot } from '@/components/Mascot';
 
 const { cards } = loadContent();
 
@@ -99,7 +100,7 @@ export function Feed() {
             data-key="done"
             className="flex h-dvh snap-start flex-col items-center justify-center gap-6 px-6 text-center"
           >
-            <p className="text-5xl">🎉</p>
+            <Mascot size={96} say={`오늘 ${bodyCount}장 완료! 내일 또 봐요.`} />
             <p className="text-2xl font-bold">오늘 {bodyCount}장 완료</p>
             <p className="text-mute">저장한 카드 {progress.saved.length}장</p>
             <Link href="/" className="text-sm text-mute underline-offset-4 hover:underline">

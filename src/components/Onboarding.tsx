@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { loadContent, type Level, type PackId } from '@/lib/content';
 import { PackChip } from '@/components/packs/PackChip';
 import { Segment } from '@/components/Segment';
+import { Mascot } from '@/components/Mascot';
 
 const { packs } = loadContent();
 
@@ -32,6 +33,9 @@ export function Onboarding({ initialPacks, initialLevel, onDone }: Props) {
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col px-6 pb-10 pt-16">
       <p className="text-sm font-medium text-accent">쇼츠말고 니혼고</p>
+      <div className="mt-4">
+        <Mascot size={64} say={step === 1 ? '안녕! 맹구예요. 배우고 싶은 장르를 골라 봐요.' : '거의 다 됐어요. 레벨은 나중에 바꿀 수 있어요.'} />
+      </div>
 
       {step === 1 && (
         <>

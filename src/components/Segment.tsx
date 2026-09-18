@@ -1,12 +1,19 @@
 'use client';
 
 type Option<T extends string> = { value: T; label: string; hint?: string };
-type Props<T extends string> = { label: string; options: Option<T>[]; value: T; onChange: (v: T) => void };
+type Props<T extends string> = {
+  label: string;
+  options: Option<T>[];
+  value: T;
+  onChange: (v: T) => void;
+  /** 한 줄에 놓을 개수. 기본은 전부 한 줄 */
+  columns?: number;
+};
 
 /** 두세 값 중 하나 고르기. 선택지를 나란히 놓고 고른 쪽만 강조한다. */
-export function Segment<T extends string>({ label, options, value, onChange }: Props<T>) {
+export function Segment<T extends string>({ label, options, value, onChange, columns }: Props<T>) {
   return (
-    <div role="radiogroup" aria-label={label} className="grid gap-2" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}>
+    <div role="radiogroup" aria-label={label} className="grid gap-2" style={{ gridTemplateColumns: `repeat(${columns ?? options.length}, minmax(0, 1fr))` }}>
       {options.map((o) => {
         const on = o.value === value;
         return (

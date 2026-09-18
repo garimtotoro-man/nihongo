@@ -7,6 +7,17 @@ import { dayKey, streak } from '@/lib/streak';
 import { Onboarding } from '@/components/Onboarding';
 import { PackChip } from '@/components/packs/PackChip';
 import { Segment } from '@/components/Segment';
+import { Mascot } from '@/components/Mascot';
+
+const GREETINGS = [
+  '오늘도 한 장씩. 그게 다예요.',
+  '어제 본 글자, 오늘도 보이면 외운 거예요.',
+  '뜻을 열기 전에 한 번 소리 내 읽어 봐요.',
+  '저장한 카드는 홈에서 세고 있어요.',
+  '헷갈리는 글자는 터치 게임으로 잡아요.',
+  '5분이면 20장. 딱 그만큼만.',
+  '발음 버튼, 눌러 보셨어요?',
+];
 
 const { packs } = loadContent();
 
@@ -28,6 +39,7 @@ export function Home() {
   const today = progress.daily[dayKey()];
   const seenToday = today?.seen ?? 0;
   const days = streak(progress.daily);
+  const greeting = GREETINGS[new Date().getDate() % GREETINGS.length];
   const togglePack = (id: (typeof packs)[number]['id']) =>
     setActivePacks(progress.activePacks.includes(id) ? progress.activePacks.filter((x) => x !== id) : [...progress.activePacks, id]);
 
@@ -36,6 +48,9 @@ export function Home() {
       <header>
         <p className="text-sm font-medium text-accent">쇼츠말고 니혼고</p>
         <h1 className="mt-1 text-3xl font-bold">오늘도 한 장씩</h1>
+        <div className="mt-5">
+          <Mascot size={64} say={greeting} />
+        </div>
       </header>
 
       <section className="mt-8 grid grid-cols-3 gap-3">
@@ -49,6 +64,14 @@ export function Home() {
         className="mt-6 block rounded-2xl bg-accent py-5 text-center text-lg font-semibold text-white active:scale-[0.99]"
       >
         오늘 학습 시작
+      </Link>
+
+      <Link href="/kana" className="mt-3 flex items-center justify-between rounded-2xl border border-line bg-paper px-5 py-4 active:bg-sand">
+        <div>
+          <p className="font-semibold"><span lang="ja">あいうえお</span> 터치</p>
+          <p className="mt-0.5 text-xs text-mute">글자를 순서대로 눌러 시간 재기</p>
+        </div>
+        <span className="text-mute">→</span>
       </Link>
 
       <section className="mt-10">

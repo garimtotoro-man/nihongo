@@ -63,6 +63,7 @@ kokoro-nihongo/
    │  ├─ layout.tsx
    │  ├─ page.tsx             ← 홈(첫 방문엔 온보딩 → 이후 오늘 통계·시작 버튼·장르 칩·레벨)
    │  ├─ feed/page.tsx        ← 피드
+   │  ├─ kana/page.tsx        ← 미니게임 あいうえお 터치(14장)
    │  ├─ saved/page.tsx       ← 저장함
    │  ├─ review/page.tsx      ← 복습(2차)
    │  ├─ stats/page.tsx       ← 통계(3차)
@@ -73,6 +74,7 @@ kokoro-nihongo/
    │  ├─ Home.tsx             ← 홈 화면(온보딩 여부로 분기)
    │  ├─ Onboarding.tsx       ← 1단계 장르 칩 → 2단계 레벨 세그먼트
    │  ├─ Segment.tsx          ← 두세 값 중 하나 고르기
+   │  ├─ Mascot.tsx           ← 도우미 맹구(그림 + 말풍선 한 줄)
    │  ├─ TtsButton.tsx
    │  └─ ProgressBar.tsx
    ├─ lib/
@@ -84,6 +86,7 @@ kokoro-nihongo/
    │     ├─ types.ts          ← Progress 타입 + ProgressStore 인터페이스
    │     ├─ local.ts          ← localStorage 구현(1~2차)
    │     └─ supabase.ts       ← Supabase 구현(3차)
+   ├─ features/kana-touch/    ← 미니게임. engine/(순수 로직) components/ hooks/ storage/ __tests__/
    └─ test/                   ← content.test.ts, feed.test.ts, store.test.ts(저장소·스트릭)
 ```
 
@@ -180,6 +183,8 @@ interface ProgressStore {
 | 통계(3차) | 주간 학습량, 스트릭, 뜻 열어본 비율, 팩별 저장률. |
 | 설정 | 레벨·팩·일일 목표·음성·속도. 3차에 계정. |
 
+마스코트 맹구(`public/mascot/`)는 홈 인사, 온보딩, 세션 완료 카드, 게임 설명·결과에만 나온다. 말풍선은 한 줄이고, 카드 안이나 목록에는 넣지 않는다.
+
 색은 흰 톤이다. 배경 `#f6f5f1`, 카드 흰색, 글자 `#1b1b22`, 강조 코랄 `#e5484d` 하나만 쓴다. 어두운 배경은 쓰지 않는다.
 
 컨트롤 규칙은 tascoFlow 와 같게 유지한다. 두세 값 중 고르는 건 세그먼트, 여러 개 켜고 끄는 건 칩, 실행은 동사 버튼. 라벨이 상태에 따라 바뀌는 단일 버튼은 만들지 않는다.
@@ -248,6 +253,16 @@ create table daily_stats (
 | **5. 계정(필요할 때)** | Google 로그인, 기기 간 동기화, 통계 화면. Supabase Free 프로젝트 생성. | `store/supabase.ts`, `supabase/migrations/` |
 
 각 단계 끝에 3명에게 써보게 하고 "어느 팩이 좋았나 / 어디서 지루했나"를 묻는다.
+
+## 14. 미니게임 あいうえお 터치
+
+명세는 `docs/KANA_TOUCH_SPEC.md`(사용자 제공)를 따른다. 코드는 `src/features/kana-touch/`, 화면은 `/kana`. 명세와 다르게 한 것만 적는다.
+
+- 문자 음성 파일 92개가 없어 `useKanaAudio`는 브라우저 일본어 음성(`lib/tts.ts`)으로 읽는다. 파일이 생기면 이 훅만 바꾼다. 효과음 4종(오답·클리어·기록·탭)은 미반영.
+- `KanaChar`에 `kind`(청음·탁음·반탁음)·`dakuonId`·`seionId`를 더했다. 탁음 모드에 필요하다.
+- `StorageAdapter`에 `getHistory`·`getSettings`·`saveSettings`를 더했다. 약점 가중치의 "연속 2회 무오답" 판정은 최근 50판 히스토리로 한다.
+- 서버 어댑터(명세 4차)는 이 앱의 5단계(계정)와 함께 만든다. 모드 해금 조건은 명세에 기준이 없어 전 모드를 열어 두었다.
+- Level 1 페널티 숨김 옵션(명세 13장)은 미반영. 헤더에 페널티 합계를 작게만 보인다.
 
 ## 12. 지금 사용자가 직접 할 일 (콘솔 작업, 코드와 무관)
 
