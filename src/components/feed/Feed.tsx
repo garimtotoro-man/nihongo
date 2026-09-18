@@ -76,6 +76,9 @@ export function Feed() {
         <div className="flex-1">
           <ProgressBar current={bodyDone} total={bodyCount} />
         </div>
+        <Link href="/kana" aria-label="글자 게임" lang="ja" className="grid size-9 shrink-0 place-items-center border border-line bg-paper text-sm font-bold text-ink shadow-sm active:bg-sand">
+          あ
+        </Link>
       </header>
 
       <div ref={scrollerRef} className="h-full snap-y snap-mandatory overflow-y-auto [scrollbar-width:none]">

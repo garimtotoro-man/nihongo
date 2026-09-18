@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { loadContent, type Level, type PackId } from '@/lib/content';
 import { PackChip } from '@/components/packs/PackChip';
@@ -74,6 +75,13 @@ export function Onboarding({ initialPacks, initialLevel, onDone, returning = fal
             </button>
           </div>
         </>
+      )}
+
+      {step === 1 && (
+        <Link href="/kana" className="mt-4 flex items-center justify-between border border-line bg-paper px-5 py-3 shadow-sm active:bg-sand">
+          <span className="font-semibold"><span lang="ja">あいうえお</span> 터치 게임</span>
+          <span className="text-mute">→</span>
+        </Link>
       )}
 
       {step === 2 && (
